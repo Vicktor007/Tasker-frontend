@@ -104,7 +104,9 @@ const Userprofile = ({ open, userId, auth, handleModalState }) => {
     >
       <Box sx={style}>
         <form onSubmit={handleSubmit}>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} alignItems="center" position={"relative"}>
+          <p className="absolute top-2 right-2 cursor-pointer" onClick={handleModalState}>X</p>
+
           <div className="  flex flex-col justify-center content-center m-auto">
         
                <img src={userImage ? userImage : formData.profilePhoto}  alt="user-image" className='w-48 h-full object-cover rounded-sm'/>

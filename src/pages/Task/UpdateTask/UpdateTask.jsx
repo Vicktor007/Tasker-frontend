@@ -133,11 +133,12 @@ const UpdateTaskForm = ({ open, handleClose, taskId }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <form onSubmit={handleSubmit} className="h-[80%]">
-          <Grid container spacing={2} alignItems="center">
-          <div className="  flex flex-col justify-center content-center m-auto">
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2} alignItems="center" position={"relative"}>
+            <p className="absolute top-2 right-2 cursor-pointer" onClick={handleClose}>X</p>
+           <div className="  flex flex-col justify-center content-center m-auto h-[200px]">
         
-               <img src={taskImage ? taskImage : formData.image}  alt="task-image" className='w-48 h-full object-cover rounded-sm'/>
+               <img src={taskImage ? taskImage : formData.image}  alt="task-image" className='w-48 h-[70%] object-cover rounded-sm'/>
           
                 <UploadWidget
               

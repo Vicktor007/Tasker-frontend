@@ -130,7 +130,7 @@ const CreateTaskForm = ({ open, handleClose }) => {
     setTaskImageId(null);
   };
 
-  
+  const imagePlaceHolder = "/public/Placeholder.svg";
 
   return (
     <Modal
@@ -141,11 +141,12 @@ const CreateTaskForm = ({ open, handleClose }) => {
     >
       <Box sx={style}>
         <form onSubmit={handleSubmit}>
-          <Grid container spacing={2} alignItems="center">
-          
-          <div className="  flex flex-col justify-center content-center m-auto">
+          <Grid container spacing={2} alignItems="center" position={"relative"}>
+          <p className="absolute top-2 right-2 cursor-pointer" onClick={handleClose}>X</p>
+
+          <div className="  flex flex-col justify-center content-center m-auto h-[200px]">
         
-          {taskImage && <img src={taskImage}  alt="task-image" className='w-48 h-full object-cover rounded-sm'/>}
+           <img src={taskImage ? taskImage : imagePlaceHolder}  alt="task-image" className='w-48 h-full object-cover rounded-sm'/>
        
             <UploadWidget
            

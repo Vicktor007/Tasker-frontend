@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import SubmitTaskForm from "../SubmitTask/SubmitTask";
-import { UserListModel } from "./UserListModel";
+import { UserListModal } from "./UserListModal";
 import { useDispatch, useSelector } from "react-redux";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { deleteTask } from "../../../ReduxToolkit/TaskSlice";
@@ -161,7 +161,7 @@ export const TaskCard = ({ item }) => {
           >
             {auth.user.role === "ROLE_ADMIN" ? (
               <>
-                <MenuItem onClick={handleOpenUserList}>Assined User</MenuItem>
+                <MenuItem onClick={handleOpenUserList}>Assign User</MenuItem>
                 <MenuItem onClick={handleOpenSubmissionList}>
                   See Submissions
                 </MenuItem>
@@ -181,7 +181,7 @@ export const TaskCard = ({ item }) => {
         handleClose={handleCloseSubmitForm}
         taskId={taskId}
       />
-      <UserListModel
+      <UserListModal
         taskId={taskId}
         open={openUserList}
         handleClose={handleCloseUserList}

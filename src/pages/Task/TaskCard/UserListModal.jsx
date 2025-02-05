@@ -29,7 +29,7 @@ const style = {
 
 const users = [1, 1, 1, 1, 1];
 
-export const UserListModel = ({ open, handleClose,taskId }) => {
+export const UserListModal = ({ open, handleClose,taskId }) => {
   const dispatch=useDispatch();
  const  auth  = useSelector((state) => state.auth);
 
@@ -52,7 +52,7 @@ export const UserListModel = ({ open, handleClose,taskId }) => {
       >
         <Box sx={style}>
           <div>
-           
+           {auth.users.length === 0 && <p className="text-center">no users yet</p>}
             {auth.users.map((item, index) => (
               <React.Fragment key={item.id}>
                 <div className="flex items-center justify-between w-full">
