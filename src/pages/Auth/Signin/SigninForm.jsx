@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { login } from "../../../ReduxToolkit/AuthSlice";
@@ -9,19 +9,16 @@ const LoginForm = ({ togglePanel }) => {
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // You can add custom validation here
-    // For example, checking if the fields are empty or have specific patterns
-    // Update the errors state accordingly
     let errorText = "";
     if (name === "email") {
       errorText =
@@ -39,8 +36,10 @@ const LoginForm = ({ togglePanel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(formData))
-    console.log("Login Form Submitted ", formData);
+    setLoading(true);
+    dispatch(login(formData)).finally(() => {
+      setLoading(false);
+    });
   };
 
   return (
@@ -79,8 +78,9 @@ const LoginForm = ({ togglePanel }) => {
             color="primary"
             type="submit"
             fullWidth
+            disabled={loading}
           >
-            Login
+            {loading ? "Signing in..." : "Login"}
           </Button>
         </div>
       </form>

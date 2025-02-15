@@ -20,13 +20,15 @@ const SignupForm = ({ togglePanel }) => {
     role: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // You can add custom validation here
-    // For example, checking if the fields are empty or have specific patterns
-    // Update the errors state accordingly
+    
+    // checking if the fields are empty or have specific patterns
+    // Updating the errors state accordingly
     let errorText = "";
     if (name === "fullName") {
       errorText = value === "" ? "Full Name is required" : "";
@@ -51,9 +53,10 @@ const SignupForm = ({ togglePanel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    // You can use the formData state to send data to your backend or perform other actions
-    dispatch(register(formData));
+    setLoading(true);
+    dispatch(register(formData)).finally(() => {
+      setLoading(false);
+    });
     console.log("Form Submitted", formData);
   };
 
@@ -129,7 +132,7 @@ const SignupForm = ({ togglePanel }) => {
       <div className="textStyle flex items-center gap-2 mt-1 justify-center">
         <span>Already have an account ?</span>
         <Button className="btn" onClick={togglePanel} color="primary">
-          signin
+          {loading ? "signing in..." : "signin"}
         </Button>
       </div>
     </div>
